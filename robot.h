@@ -25,6 +25,7 @@ class robot : public IterativeRobot {
 		Joystick *joystick;
 		chassis *theChassis;
 		catapult *theCatapult;
+		collector *theCollector;
 };
 
 #endif
