@@ -1,6 +1,7 @@
 #ifndef CHASSIS_H
 #define CHASSIS_H
 
+#include "rotationPIDoutput.h"
 #include <WPILib.h>
 
 class chassis{
