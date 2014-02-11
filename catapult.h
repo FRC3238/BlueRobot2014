@@ -36,6 +36,7 @@ class catapult{
 		float motorPower;
 		Talon *MotorOneTalon;
 		Talon *MotorTwoTalon;
+		DigitalInput *CatapultLimitSwitch;
 		Encoder *CatapultEncoder;
 		Timer *LoweringTimer;
 		enum firingState_t{

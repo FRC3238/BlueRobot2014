@@ -34,6 +34,7 @@ class chassis{
 		AnalogChannel *LeftRearSonar;
 		AnalogChannel *RightFrontSonar;
 		AnalogChannel *RightRearSonar;
+		rotationPIDoutput *PIDRotationOutput;
 		enum chassisState_t{
 			mecanum,
 			axisLock,

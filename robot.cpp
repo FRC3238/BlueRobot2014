@@ -10,9 +10,8 @@ robot::robot(void){
 }
 
 void robot::RobotInit() {
-	SmartDashboard::init();
 	theCatapult->SetMotorPower(-1.0);
-	insight_ballDistance.setHeader("Dist:");
+	insight_ballDistance.setHeader("Count:");
 	insight.registerData(insight_ballDistance, 1);
 	insight.startDisplay();
 }
@@ -23,7 +22,7 @@ void robot::DisabledInit() {
 }
 
 void robot::AutonomousInit() {
-	theCollector->Run();
+
 }
 
 void robot::TeleopInit() {
@@ -32,28 +31,34 @@ void robot::TeleopInit() {
 	
 void robot::DisabledPeriodic() {
 	theCatapult->SetStoppingPoint(0);
-	int ballDistance = theCollector->GetBallSensorValue();
+	int ballDistance = theCatapult->GetEncoderCount();
 	insight_ballDistance.setData(ballDistance);
 }
 
 void robot::AutonomousPeriodic() {
-	theCollector->Idle();
+
 }
 	
 void robot::TeleopPeriodic() {
-	int EncoderStoppingPoint = SmartDashboard::GetNumber("EncoderStoppingPoint");
 	float x = joystick->GetRawAxis(1);
 	float y = joystick->GetRawAxis(2);
 	float twist = joystick->GetRawAxis(3);
-	theChassis->SetJoystickData(x, y, twist);
-	if(theCatapult->GetState() != 1){
-		if(joystick->GetRawButton(1)){
-			theCatapult->SetStoppingPoint(EncoderStoppingPoint);
-			theCatapult->ResetEncoder();
-			theCatapult->Fire();
-		}
+	theChassis->SetJoystickData(x, y, -twist);
+	if(joystick->GetRawButton(1)){
+		theCatapult->SetStoppingPoint(185);
+		theCatapult->Fire();
+	}
+	if(joystick->GetRawButton(2)){
+		theCollector->Run();
+	}
+	if(joystick->GetRawButton(3)){
+		theCollector->Disable();
+	}
+	if(joystick->GetRawButton(4)){
+		theCollector->ReInit();
 	}
 	theCatapult->Idle();
+	theCollector->Idle();
 	theChassis->Idle();
 }
 

@@ -64,7 +64,7 @@ void collector::Idle(){
 			break;
 
 			case raising:
-				if(BallSensor->GetValue() > 450){
+				if(UpperLimitSensor->Get()){
 					LiftingTalon->Set(-1.0);
 					RollerTalon->Set(1.0);
 				}

@@ -2,12 +2,11 @@
 #define ROTATIONPIDOUTPUT_H
 
 #include <WPILib.h>
-#include "chassis.h"
 
 class rotationPIDoutput : public PIDOutput{
 
 	public:
-		rotationPIDoutput(Talon *LeftFrontTalon, Talon *LeftRearTalon, Talon *RightFrontTalon, Talon *RightRearTalon);
+		rotationPIDoutput(RobotDrive *Drivetrain);
 		void PIDWrite(float rotationValue);
 
 	private:

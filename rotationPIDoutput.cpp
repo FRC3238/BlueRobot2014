@@ -1,8 +1,8 @@
 #include <WPILib.h>
 #include "rotationPIDoutput.h"
 
-rotationPIDoutput::rotationPIDoutput(Talon *LeftFrontTalon, Talon *LeftRearTalon, Talon *RightFrontTalon, Talon *RightRearTalon){
-	Drivetrain = new RobotDrive(LeftFrontTalon, LeftRearTalon, RightFrontTalon, RightRearTalon);
+rotationPIDoutput::rotationPIDoutput(RobotDrive *Drivetrain){
+	
 }
 
 void rotationPIDoutput::PIDWrite(float rotationValue){
